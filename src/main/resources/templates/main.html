@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Агентство недвижимости</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@300;400;700;900&family=Montserrat:ital,wght@0,300;0,400;0,700;1,200&display=swap" rel="stylesheet">
+  <style>
+
+
+    body{
+      font-family: "Montserrat";
+      margin: 10px;
+      background-color: darkslategrey;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .header {
+      color: #cccccc;
+    }
+
+    h3 {
+      color: #cccccc;
+    }
+
+    .login-btn{
+      margin: 10px;
+    }
+    .logout{
+      margin: 10px;
+    }
+    .button1 {
+      background-color: deepskyblue;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+<div>
+
+  <h1 class="header">Агентство недвижимости</h1><hr>
+
+  <main>
+    <div th:if="${username != null} ">
+      <h3><i>Логин пользователя: <span th:text="${username}"></span></i></h3>
+      <div class="logout">
+        <form action="/logout" method="post">
+          <input type="submit" value="Выйти"/>
+        </form>
+      </div>
+      <div th:if="${#authentication.principal.isAdmin()}">
+        <a href="/admin" class="button1">Панель администратора</a>
+      </div>
+    </div>
+    <div th:if="${username == null}">
+      <div class="login-btn">
+        <form action="/login" method="post">
+          <input type="submit" value="Войти"/>
+        </form>
+      </div>
+    </div>
+
+    <style>
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: chocolate;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .button:hover {
+        background-color: #555;
+      }
+
+    </style>
+
+    <form action="/orders" method="get">
+      <input class="button" type="submit" value="Избранное">
+
+    </form>
+
+
+
+    <div class="cards_container">
+      <div class="card" id="card1">
+        <form action="/order" method="get">
+          <h2>Объект недвижимости</h2>
+          <!--<h2>Запись на ТО</h2>
+          <p>Запишитесь на ТО прямо сейчас!</p>-->
+          <img src="1.jpeg" alt="" class="img1">
+          <p>10000 $</p>
+          <input class="btn" type="submit" value="Избранное">
+        </form>
+      </div>
+
+      <div class="card" id="card2">
+        <form action="/order" method="get">
+          <h2>Объект недвижимости</h2>
+          <!--<h2>Запись на ТО</h2>
+          <p>Запишитесь на ТО прямо сейчас!</p>-->
+          <img src="2.jpeg" alt="" class="img2">
+          <p>99000 $</p>
+          <input class="btn" type="submit" value="Избранное">
+        </form>
+      </div>
+
+      <div class="card" id="card3">
+        <form action="/order" method="get">
+          <h2>Объект недвижимости</h2>
+          <!--<h2>Запись на ТО</h2>
+          <p>Запишитесь на ТО прямо сейчас!</p>-->
+          <img src="3%20(2).jpg" alt="" class="img3">
+          <p>9999 $</p>
+          <input class="btn" type="submit" value="Избранное">
+        </form>
+      </div>
+
+      <div class="card" id="card4">
+        <form action="/order" method="get">
+          <h2>Объект недвижимости</h2>
+          <!--<h2>Запись на ТО</h2>
+          <p>Запишитесь на ТО прямо сейчас!</p>-->
+          <img src="4%20(2).jpg" alt="" class="img4">
+          <p>10000 $</p>
+          <input class="btn" type="submit" value="Избранное">
+        </form>
+      </div>
+
+      <div class="card" id="card5">
+        <form action="/order" method="get">
+          <h2>Объект недвижимости</h2>
+          <!--<h2>Запись на ТО</h2>
+          <p>Запишитесь на ТО прямо сейчас!</p>-->
+          <img src="5%20(2).jpg" alt="" class="img5">
+          <div class="price">
+            <p>29999 $</p>
+            <input class="btn" type="submit" value="Избранное">
+          </div>
+        </form>
+      </div>
+
+      <div class="card" id="card6">
+        <form action="/order" method="get">
+          <h2>Объект недвижимости</h2>
+          <!--<h2>Запись на ТО</h2>
+          <p>Запишитесь на ТО прямо сейчас!</p>-->
+          <img src="6.jpeg" alt="" class="img6">
+          <div class="price">
+            <p>30000 $</p>
+            <input class="btn" type="submit" value="Избранное">
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+
+
+  <style>
+    .cards_container {
+      position: relative;
+      display: flex;
+      margin-top: 65px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      position: relative;
+      background-color: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      max-width: 354px;
+      height: 395px;
+      margin: 0 auto;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    div#card5 {
+      margin-left: 53px;
+      width: 356px;
+    }
+
+    div#card6 {
+      width: 356px;
+      margin-right: 52px;
+    }
+
+    h2 {
+      font-size: 19px;
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 20px;
+      display: inline-flex;
+      margin-left: 1px;
+    }
+
+    img {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn {
+      background-color: darkslategrey;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: inline-flex;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: 122px;
+    }
+
+    .btn:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+
+
+</div>
+
+</body>
+</html>

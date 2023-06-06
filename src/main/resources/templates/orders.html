@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--<title>Список ТО клиента</title>-->
+    <title>Избранное</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@300;400;700;900&family=Montserrat:ital,wght@0,300;0,400;0,700;1,200&display=swap" rel="stylesheet">
+
+    <style>
+        /* Стили для таблицы */
+        body {
+            font-family: "Montserrat";
+            margin: 10px;
+            background-color: darkslategrey;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .header {
+            color: #cccccc;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: cadetblue;
+            color: white;
+        }
+
+        td {
+            background-color: whitesmoke;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        /* Стили для контейнера */
+        .container {
+            width: 80%;
+            margin: auto;
+            padding-top: 50px;
+        }
+
+        /* Стили для заголовка */
+        .sub-title {
+            text-align: center;
+            color: honeydew;
+        }
+    </style>
+</head>
+<body>
+<h1 class="header">Агентство недвижимости</h1><hr>
+<div class="container">
+
+
+
+    <form action="/orders" method="get">
+        <!--<h1>Список записей ТО</h1>-->
+        <h1 class="sub-title">Избранное</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Номер телефона</th>
+                <th>Адрес</th>
+                <!--<th>Объем двигателя</th>-->
+
+                <th>Дополнительная информация</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Используем Thymeleaf для динамического отображения данных -->
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.name}"></td>
+                <td th:text="${order.phoneNumber}"></td>
+                <td th:text="${order.adress}"></td>
+                <!--<td th:text="${order.engineCapacity}"></td>-->
+
+                <td th:text="${order.moreDetailed}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>
